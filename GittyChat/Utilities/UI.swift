@@ -23,6 +23,22 @@ struct TitleText: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.largeTitle.weight(.bold))
-            .foregroundColor(Color.ruby)
+            .foregroundColor(.ruby)
+    }
+}
+
+struct PrimaryButton: View {
+    let title: String
+    var action: () -> ()
+    var body: some View {
+        Button(action: action, label: {
+            Text(title.uppercased())
+                .fontWeight(.bold)
+                .foregroundColor(.ruby)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                .cornerRadius(5)
+        })
     }
 }

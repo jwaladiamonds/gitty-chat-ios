@@ -15,8 +15,9 @@ struct ContentView: View {
     @State var error: String?
     
     var body: some View {
-        NavigationView {
-          VStack {
+        WelcomeView(gitter: gitter)
+//        NavigationView {
+//          VStack {
 //            TextField("Email", text: $email, onCommit: validate)
 //              .padding()
 //              .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -30,11 +31,11 @@ struct ContentView: View {
 //            error.flatMap {
 //              Text("Error: \($0)").foregroundColor(.red)
 //            }
-            Button("Gitter"){
-                gitter.openAuthURL()
-            }
-          }.navigationBarTitle("Log In")
-        }
+//            Button("Gitter"){
+//                gitter.openAuthURL()
+//            }
+//          }.navigationBarTitle("Log In")
+//        }
     }
     func validate() {
         
