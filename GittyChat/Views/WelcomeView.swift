@@ -13,7 +13,7 @@ struct WelcomeView: View {
             Text("Create an account")
             Text("Connect with people around the world")
                 .font(Font.largeTitle.weight(.bold))
-                .foregroundColor(.accentColor)
+                .foregroundColor(Color.ruby)
             Spacer()
         }
     }
