@@ -7,6 +7,7 @@
 
 import SwiftUI
 
-extension Color {
-    public static var ruby = Color("Ruby")
+public extension Color {
+    static let bodyText = Color("BodyText")
+    static let ruby = Color("Ruby")
 }

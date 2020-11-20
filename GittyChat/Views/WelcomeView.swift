@@ -11,6 +11,7 @@ struct WelcomeView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Create an account")
+                .foregroundColor(Color.bodyText)
             Text("Connect with people around the world")
                 .font(Font.largeTitle.weight(.bold))
                 .foregroundColor(Color.ruby)
