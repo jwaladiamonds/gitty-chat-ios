@@ -13,6 +13,8 @@
 		670A32002567A2FD00BA0015 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 670A31FF2567A2FD00BA0015 /* Preview Assets.xcassets */; };
 		670A320D2567A73700BA0015 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A320C2567A73700BA0015 /* WelcomeView.swift */; };
 		670A32132567A9FA00BA0015 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A32122567A9FA00BA0015 /* UI.swift */; };
+		670A321A2567CC6300BA0015 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A32192567CC6300BA0015 /* Data.swift */; };
+		670A32212567D8C200BA0015 /* Gitter.plist in Resources */ = {isa = PBXBuildFile; fileRef = 670A32202567D8C200BA0015 /* Gitter.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		670A32012567A2FD00BA0015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		670A320C2567A73700BA0015 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		670A32122567A9FA00BA0015 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		670A32192567CC6300BA0015 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		670A32202567D8C200BA0015 /* Gitter.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Gitter.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 				670A31FC2567A2FD00BA0015 /* Assets.xcassets */,
 				670A32012567A2FD00BA0015 /* Info.plist */,
 				670A31FE2567A2FD00BA0015 /* Preview Content */,
+				670A32202567D8C200BA0015 /* Gitter.plist */,
 			);
 			path = GittyChat;
 			sourceTree = "<group>";
@@ -87,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				670A32122567A9FA00BA0015 /* UI.swift */,
+				670A32192567CC6300BA0015 /* Data.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				670A32212567D8C200BA0015 /* Gitter.plist in Resources */,
 				670A32002567A2FD00BA0015 /* Preview Assets.xcassets in Resources */,
 				670A31FD2567A2FD00BA0015 /* Assets.xcassets in Resources */,
 			);
@@ -161,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				670A31FB2567A2FC00BA0015 /* ContentView.swift in Sources */,
+				670A321A2567CC6300BA0015 /* Data.swift in Sources */,
 				670A32132567A9FA00BA0015 /* UI.swift in Sources */,
 				670A320D2567A73700BA0015 /* WelcomeView.swift in Sources */,
 				670A31F92567A2FC00BA0015 /* GittyChatApp.swift in Sources */,
