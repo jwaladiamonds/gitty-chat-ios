@@ -11,6 +11,7 @@
 		670A31FB2567A2FC00BA0015 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A31FA2567A2FC00BA0015 /* ContentView.swift */; };
 		670A31FD2567A2FD00BA0015 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 670A31FC2567A2FD00BA0015 /* Assets.xcassets */; };
 		670A32002567A2FD00BA0015 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 670A31FF2567A2FD00BA0015 /* Preview Assets.xcassets */; };
+		670A320D2567A73700BA0015 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A320C2567A73700BA0015 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		670A31FC2567A2FD00BA0015 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		670A31FF2567A2FD00BA0015 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		670A32012567A2FD00BA0015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		670A320C2567A73700BA0015 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		670A31F72567A2FC00BA0015 /* GittyChat */ = {
 			isa = PBXGroup;
 			children = (
+				670A320A2567A5C700BA0015 /* Views */,
 				670A31F82567A2FC00BA0015 /* GittyChatApp.swift */,
 				670A31FA2567A2FC00BA0015 /* ContentView.swift */,
 				670A31FC2567A2FD00BA0015 /* Assets.xcassets */,
@@ -67,6 +70,14 @@
 				670A31FF2567A2FD00BA0015 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		670A320A2567A5C700BA0015 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				670A320C2567A73700BA0015 /* WelcomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				670A31FB2567A2FC00BA0015 /* ContentView.swift in Sources */,
+				670A320D2567A73700BA0015 /* WelcomeView.swift in Sources */,
 				670A31F92567A2FC00BA0015 /* GittyChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
