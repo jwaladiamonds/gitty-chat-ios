@@ -25,6 +25,17 @@ struct GittyChatApp: App {
                         }
                     }
                 }
+                .onAppear(perform: loadSavedData)
+        }
+    }
+    
+    func loadSavedData() {
+        if let savedCredential = UserDefaults.standard.object(forKey: "GitterCredential") as? Data {
+            let decoder = JSONDecoder()
+            if let credential = try? decoder.decode(Credential.self, from: savedCredential) {
+                gitter.login(credential: credential)
+                print("Found Creds")
+            }
         }
     }
 }

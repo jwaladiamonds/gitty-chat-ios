@@ -7,50 +7,13 @@
 
 import SwiftUI
 
-struct Profile {
-    var id: String?
-    var username: String?
-    var displayName: String?
-    var url: String?
-    var avatarUrl: String?
-    var staff: Bool?
-    var providers: [String]?
-    var version: Int?
-    var gitterVersion: String?
-}
-
-struct Credential: Codable {
-    var access_token: String
-    var expires_in: String?
-    var token_type: String
-}
-
-struct Client {
-    var id: String?
-    var secret: String?
-    var redirectURI: String?
-    var host = "redirect"
-    
-    init() {
-        if let data = self.getData() {
-            self.id = data["OAuthClientId"] as? String
-            self.secret = data["OAuthClientSecret"] as? String
-            self.redirectURI = data["OAuthCallback"] as? String
-        }
-    }
-    
-    private func getData() -> [String: Any]? {
-        if let path = Bundle.main.path(forResource: "Gitter", ofType: "plist"),
-           let xml = FileManager.default.contents(atPath: path) {
-            return (try? PropertyListSerialization.propertyList(from: xml, options: .mutableContainersAndLeaves, format: nil)) as? [String: Any]
-        }
-        return nil
-    }
-}
+let defaults = UserDefaults.standard
 
 class Gitter: ObservableObject {
     @Published var client = Client()
-    @Published var credentials: Credential?
+    @Published var credential: Credential?
+    @Published var loggedIn = false
+    
     var authURL:String {
         return "https://gitter.im/login/oauth/authorize?client_id=\(self.client.id!)&response_type=code&redirect_uri=\(self.client.redirectURI!)"
     }
@@ -59,10 +22,6 @@ class Gitter: ObservableObject {
         if let url = URL(string: self.authURL) {
             UIApplication.shared.open(url)
         }
-    }
-    
-    func check() {
-        print(self.credentials?.access_token ?? "No token found")
     }
     
     func auth(code: String?) {
@@ -94,12 +53,32 @@ class Gitter: ObservableObject {
                 }
                 if let decodedResponse = try? JSONDecoder().decode(Credential.self, from: data) {
                     DispatchQueue.main.async {
-                        self.credentials = decodedResponse
+                        self.login(credential: decodedResponse)
                     }
                     return
                 }
                 print("Unable to decode response")
             }.resume()
+        }
+    }
+    
+    func login(credential: Credential) {
+        self.loggedIn = true
+        self.credential = credential
+        self.save()
+    }
+    
+    func logout() {
+        self.loggedIn = false
+        self.credential = nil
+        defaults.removeObject(forKey: "GitterCredential")
+    }
+    
+    func save() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(self.credential) {
+            defaults.set(encoded, forKey: "GitterCredential")
+            return
         }
     }
 }

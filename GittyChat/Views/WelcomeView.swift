@@ -20,6 +20,7 @@ struct WelcomeView: View {
                 Image("Logo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .cornerRadius(40)
                     .padding(.bottom, 35)
                     .padding([.leading, .trailing], 80)
                 PrimaryButton(title: "Sign in with Gitter") {

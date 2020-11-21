@@ -11,7 +11,7 @@ struct HomeView: View {
     @EnvironmentObject var gitter: Gitter
     var body: some View {
         Button("Logout") {
-            gitter.credentials = nil
+            gitter.logout()
         }
     }
 }
