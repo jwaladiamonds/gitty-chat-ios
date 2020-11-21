@@ -12,18 +12,11 @@ public extension Color {
     static let ruby = Color("Ruby")
 }
 
-struct BodyText: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .foregroundColor(.bodyText)
-    }
-}
-
 struct TitleText: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(Font.largeTitle.weight(.bold))
-            .foregroundColor(.ruby)
+            .foregroundColor(Color.accentColor)
     }
 }
 
@@ -34,10 +27,10 @@ struct PrimaryButton: View {
         Button(action: action, label: {
             Text(title.uppercased())
                 .fontWeight(.bold)
-                .foregroundColor(.ruby)
+                .foregroundColor(Color.accentColor)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(Color.white)
+                .background(Color(UIColor.systemBackground))
                 .cornerRadius(5)
         })
     }

@@ -11,12 +11,10 @@ struct WelcomeView: View {
     var gitter: Gitter
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Create an account")
-                .modifier(BodyText())
-                .padding()
             Text("Connect with people around the world")
                 .modifier(TitleText())
-                .padding([.bottom, .leading, .trailing])
+                .padding()
+                .padding(.top, 70)
             Spacer()
             VStack(alignment: .center) {
                 Image("Logo")
@@ -30,6 +28,8 @@ struct WelcomeView: View {
             }
             Spacer()
         }
+        .background(Color(UIColor.systemBackground))
+        .edgesIgnoringSafeArea(.all)
     }
 }
 

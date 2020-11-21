@@ -49,8 +49,8 @@ struct Client {
 }
 
 class Gitter: ObservableObject {
-    var client = Client()
-    var credentials: Credential?
+    @Published var client = Client()
+    @Published var credentials: Credential?
     var authURL:String {
         return "https://gitter.im/login/oauth/authorize?client_id=\(self.client.id!)&response_type=code&redirect_uri=\(self.client.redirectURI!)"
     }
@@ -59,6 +59,10 @@ class Gitter: ObservableObject {
         if let url = URL(string: self.authURL) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    func check() {
+        print(self.credentials?.access_token ?? "No token found")
     }
     
     func auth(code: String?) {
