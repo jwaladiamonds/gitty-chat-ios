@@ -22,6 +22,7 @@
 		670A323625691D5C00BA0015 /* CommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A323525691D5C00BA0015 /* CommunitiesView.swift */; };
 		679928B1256B88AB00F25A83 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679928B0256B88AB00F25A83 /* ProfileView.swift */; };
 		679928BA256BA00C00F25A83 /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679928B9256BA00C00F25A83 /* RefreshView.swift */; };
+		679928BE256BA99C00F25A83 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679928BD256BA99C00F25A83 /* ImageView.swift */; };
 		67D073EE2569259C0046C820 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D073ED2569259C0046C820 /* Models.swift */; };
 		67D073F22569267D0046C820 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D073F12569267D0046C820 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		670A323525691D5C00BA0015 /* CommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesView.swift; sourceTree = "<group>"; };
 		679928B0256B88AB00F25A83 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		679928B9256BA00C00F25A83 /* RefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
+		679928BD256BA99C00F25A83 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		67D073ED2569259C0046C820 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		67D073F12569267D0046C820 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,7 +108,6 @@
 				679928B4256B9CAB00F25A83 /* Search */,
 				679928B6256B9CC500F25A83 /* People */,
 				679928B5256B9CB400F25A83 /* Communities */,
-				679928B8256B9FF600F25A83 /* Refresher */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +118,8 @@
 				670A32122567A9FA00BA0015 /* UI.swift */,
 				670A32192567CC6300BA0015 /* Data.swift */,
 				67D073ED2569259C0046C820 /* Models.swift */,
+				679928BD256BA99C00F25A83 /* ImageView.swift */,
+				679928B8256B9FF600F25A83 /* Refresher */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				679928BA256BA00C00F25A83 /* RefreshView.swift in Sources */,
 				670A320D2567A73700BA0015 /* WelcomeView.swift in Sources */,
 				670A323625691D5C00BA0015 /* CommunitiesView.swift in Sources */,
+				679928BE256BA99C00F25A83 /* ImageView.swift in Sources */,
 				670A31F92567A2FC00BA0015 /* GittyChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

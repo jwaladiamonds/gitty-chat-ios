@@ -10,8 +10,16 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var gitter: Gitter
     var body: some View {
-        Button("Logout") {
-            gitter.logout()
+        VStack {
+            
+            
+        }
+        .toolbar {
+            ToolbarItem(placement: .destructiveAction) {
+                Button("Logout") {
+                    gitter.logout()
+                }
+            }
         }
     }
 }

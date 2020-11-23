@@ -11,6 +11,7 @@ let defaults = UserDefaults.standard
 
 class Gitter: ObservableObject {
     @Published var client = Client()
+    @Published var user: User?
     @Published var credential: Credential?
     @Published var loggedIn = false
     
@@ -66,6 +67,7 @@ class Gitter: ObservableObject {
         self.loggedIn = true
         self.credential = credential
         self.save()
+        self.getUser()
     }
     
     func logout() {
@@ -79,6 +81,44 @@ class Gitter: ObservableObject {
         if let encoded = try? encoder.encode(self.credential) {
             defaults.set(encoded, forKey: "GitterCredential")
             return
+        }
+    }
+    
+    func fetch<Content: Codable>(url: String,_ completion: @escaping (Content) -> Void) {
+        if let credential = self.credential {
+            let url = URL(string: url)!
+            var request = URLRequest(url: url)
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue(credential.authorization, forHTTPHeaderField: "Authorization")
+            request.httpMethod = "GET"
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                guard let httpResponse = response as? HTTPURLResponse,
+                      (200...299).contains(httpResponse.statusCode) else {
+                    print(response.debugDescription)
+                    return
+                }
+                
+                if let mimeType = httpResponse.mimeType, mimeType == "application/json",
+                   let data = data { //}, let string = String(data: data, encoding: .utf8) {
+                    if let decodedResponse = try? JSONDecoder().decode(Content.self, from: data) {
+                        DispatchQueue.main.async {
+                            completion(decodedResponse)
+                        }
+                        return
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+    func getUser() {
+        fetch(url: "https://api.gitter.im/v1/user/me") { data in
+            self.user = data
         }
     }
 }

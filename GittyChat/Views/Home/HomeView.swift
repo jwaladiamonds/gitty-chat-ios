@@ -35,9 +35,15 @@ struct HomeView: View {
             .navigationBarItems(
                 leading:
                     NavigationLink(destination: ProfileView()) {
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
+                        if let user = gitter.user {
+                            ImageView(url: user.avatarUrlSmall!)
+                                .clipShape(Circle())
+                                .frame(width: 30, height: 30)
+                        } else {
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
                     }
             )
             .toolbar {

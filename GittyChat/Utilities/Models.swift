@@ -7,25 +7,28 @@
 
 import Foundation
 
-struct User {
+struct User: Codable {
     var id: String
     var username: String
     var displayName: String
     var url: String
+    var avatarUrl: String?
     var avatarUrlSmall: String?
     var avatarUrlMedium: String?
-    var avatarUrl: String?
     var role: String?
     var staff: Bool?
     var providers: [String]?
     var v: Int?
-    var gV: String?
+    var gv: String?
 }
 
 struct Credential: Codable {
     var access_token: String
     var expires_in: String?
     var token_type: String
+    var authorization: String {
+        return token_type + " " + access_token
+    }
 }
 
 struct Client {
