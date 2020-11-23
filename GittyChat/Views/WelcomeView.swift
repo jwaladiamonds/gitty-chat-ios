@@ -11,7 +11,7 @@ struct WelcomeView: View {
     var gitter: Gitter
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Connect with people around the world")
+            Text("Where comminities thrive")
                 .modifier(TitleText())
                 .padding()
                 .padding(.top, 70)

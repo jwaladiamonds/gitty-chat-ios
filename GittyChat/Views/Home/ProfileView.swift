@@ -1,13 +1,13 @@
 //
-//  HomeView.swift
+//  ProfileView.swift
 //  GittyChat
 //
-//  Created by Nikhil John on 21/11/20.
+//  Created by Nikhil John on 23/11/20.
 //
 
 import SwiftUI
 
-struct HomeView: View {
+struct ProfileView: View {
     @EnvironmentObject var gitter: Gitter
     var body: some View {
         Button("Logout") {
@@ -16,8 +16,8 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        ProfileView()
     }
 }
