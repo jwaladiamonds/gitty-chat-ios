@@ -12,47 +12,48 @@ struct ProfileView: View {
     @EnvironmentObject var gitter: Gitter
     var user: GUser
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading) {
-                HStack {
-                    Group {
-                        if let url = user.avatarUrl {
-                            ImageView(url: url)
-                        } else if let url = user.avatarUrlMedium {
-                            ImageView(url: url)
-                        } else if let url = user.avatarUrlSmall {
-                            ImageView(url: url)
-                        } else {
-                            Image(systemName: "person.fill")
-                        }
-                    }
-                    .clipShape(Circle())
-                    .frame(width: 80, height: 80)
-                    VStack {
-                        Text(user.displayName)
-                            .font(.title)
-                    }
-                }
-//                Text("Role: \(user.role ?? "None")")
-//                Text("Staff: \(user.staff ?? false ? "True" : "False")")
-                if let providers = user.providers {
-                    VStack {
-                        ForEach(providers, id: \.self) { provider in
-                            HStack {
-                                Text("\(provider) : ")
-                                Link("https://\(provider).com\(user.url)", destination: URL(string: "https://\(provider).com\(user.url)")!)
+        List {
+            Section {
+                VStack(alignment: .leading) {
+                    HStack(spacing: 20) {
+                        Group {
+                            if let url = user.avatarUrl {
+                                ImageView(url: url)
+                            } else if let url = user.avatarUrlMedium {
+                                ImageView(url: url)
+                            } else if let url = user.avatarUrlSmall {
+                                ImageView(url: url)
+                            } else {
+                                Image(systemName: "person.fill")
                             }
                         }
+                        .clipShape(Circle())
+                        .frame(width: 80, height: 80)
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(user.displayName)
+                                .font(.title)
+                            Text("@\(user.username)")
+                                .foregroundColor(.ruby)
+                                .onTapGesture(perform: {
+                                    shareURL(url: "https://gitter.im\(user.url)")
+                                })
+                        }
+                    }
+                    Spacer()
+                }
+                .padding()
+            }
+            Section(header: ListHeader(text: "Providers")) {
+                if let providers = user.providers {
+                    ForEach(providers, id: \.self) { provider in
+                        Link("\(provider)".capitalized, destination: URL(string: "https://\(provider).com\(user.url)")!)
                     }
                 }
-//                Text("Version: \(user.v ?? 0)")
-//                Text("Github version: \(user.gv ?? "nil")")
-                Spacer()
             }
-            .padding()
         }
+        .listStyle(InsetGroupedListStyle())
         .frame(maxWidth: .infinity, alignment: .topLeading)
-        .navigationBarTitle("@\(user.username)")
+        .navigationBarTitle("Profile", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .destructiveAction) {
                 Button("Logout") {
@@ -60,5 +61,11 @@ struct ProfileView: View {
                 }
             }
         }
+    }
+    
+    func shareURL(url: String) {
+        guard let data = URL(string: url) else { return }
+        let avc = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(avc, animated: true, completion: nil)
     }
 }

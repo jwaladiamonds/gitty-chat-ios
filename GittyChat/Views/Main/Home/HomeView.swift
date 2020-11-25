@@ -109,14 +109,3 @@ struct HomeView: View {
     }
     
 }
-
-struct ListHeader: View {
-    var text: String = ""
-    var body: some View {
-        Text(text)
-            .foregroundColor(Color(UIColor.label))
-            .textCase(.none)
-            .font(.system(size: 20, weight: .semibold, design: .default))
-            .padding(.vertical, 7)
-    }
-}
