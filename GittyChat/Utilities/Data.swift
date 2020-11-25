@@ -67,9 +67,9 @@ extension Gitter {
                 }
                 
                 if let mimeType = httpResponse.mimeType, mimeType == "application/json",
-//                   let data = data {
-                   let data = data, let string = String(data: data, encoding: .utf8) {
-                    print(string)
+                   let data = data {
+//                   let data = data, let string = String(data: data, encoding: .utf8) {
+//                    print(string)
                     let formatter = DateFormatter()
                     formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS'Z'"
                     let decoder = JSONDecoder()

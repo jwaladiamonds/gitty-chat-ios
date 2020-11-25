@@ -15,27 +15,33 @@ struct HomeView: View {
             VStack {
                 List {
                     
-                    Section(header: ListHeader(text: "Favorite")) {
+                    Section(header: ListHeader(text: "Favorites")) {
                         if let rooms = gitter.rooms {
                             ForEach(favouriteRooms(rooms: rooms), id: \.id) { room in
-                                RowItem(text: room.name)
+                                RoomItem(room: room)
                             }
+                        } else {
+                            InfinitProgressView()
                         }
                     }
 
                     Section(header: ListHeader(text: "Rooms")) {
                         if let rooms = gitter.rooms {
-                            ForEach(rooms, id: \.id) { room in
-                                RowItem(text: room.name)
+                            ForEach(sortedRooms(rooms: rooms), id: \.id) { room in
+                                RoomItem(room: room)
                             }
+                        } else {
+                            InfinitProgressView()
                         }
                     }
                     
                     Section(header: ListHeader(text: "Communities")) {
                         if let groups = gitter.groups {
                             ForEach(groups, id: \.id) { group in
-                                RowItem(text: group.name)
+                                GroupItem(group: group)
                             }
+                        } else {
+                            InfinitProgressView()
                         }
                     }
                 }
@@ -44,14 +50,16 @@ struct HomeView: View {
             .navigationBarTitle("Home")
             .navigationBarItems(
                 leading:
-                    NavigationLink(destination: ProfileView()) {
-                        Group {
-                            if let user = gitter.user {
-                                ImageView(url: user.avatarUrlSmall!)
+                    Group {
+                        if let user = gitter.user {
+                            NavigationLink(destination: ProfileView(user: user)) {
+                                Group {
+                                    ImageView(url: user.avatarUrlSmall!)
+                                }
+                                .clipShape(Circle())
+                                .frame(width: 30, height: 30)
                             }
                         }
-                        .clipShape(Circle())
-                        .frame(width: 30, height: 30)
                     }
             )
             .toolbar {
@@ -84,8 +92,17 @@ struct HomeView: View {
             }
         }
         return favRooms.sorted {
-            if let oldFav = $0.favourite, let newFav = $1.favourite {
-                return oldFav > newFav
+            if let nextFav = $0.favourite, let thisFav = $1.favourite {
+                return nextFav < thisFav
+            }
+            return false
+        }
+    }
+    
+    func sortedRooms(rooms: [GRoom]) -> [GRoom] {
+        return rooms.sorted {
+            if let nextFav = $0.lastAccessTime, let thisFav = $1.lastAccessTime {
+                return nextFav > thisFav
             }
             return false
         }
@@ -100,16 +117,6 @@ struct ListHeader: View {
             .foregroundColor(Color(UIColor.label))
             .textCase(.none)
             .font(.system(size: 20, weight: .semibold, design: .default))
-    }
-}
-
-struct RowItem: View {
-    var text: String = "Test link"
-    var body: some View {
-        NavigationLink(destination: Text(text)) {
-            HStack {
-                Text(text)
-            }
-        }
+            .padding(.vertical, 7)
     }
 }
