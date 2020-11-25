@@ -1,4 +1,7 @@
 # gitty-chat-ios
+
+[![Join the chat at https://gitter.im/Gitter-iOS-App/community](https://badges.gitter.im/Gitter-iOS-App/community.svg)](https://gitter.im/Gitter-iOS-App/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
  Gitty Chat iOS App using Gitter API
 
 #### Prerequesties:
