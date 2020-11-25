@@ -7,43 +7,51 @@
 
 import SwiftUI
 
+
 struct HomeView: View {
     @EnvironmentObject var gitter: Gitter
-    @State private var sort: Int = 0
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    GroupBox(label: Text("My Work")) {
-                        NavigationLink(destination: Text("New World")) {
-                            Text("Hello, new World!")
-                        }
-                        NavigationLink(destination: Text("New World")) {
-                            Text("Hello, new World!")
-                        }
-                        NavigationLink(destination: Text("New World")) {
-                            Text("Hello, new World!")
-                        }
-                        NavigationLink(destination: Text("New World")) {
-                            Text("Hello, new World!")
+            VStack {
+                List {
+                    
+                    Section(header: ListHeader(text: "Favorite")) {
+                        if let rooms = gitter.rooms {
+                            ForEach(favouriteRooms(rooms: rooms), id: \.id) { room in
+                                RowItem(text: room.name)
+                            }
                         }
                     }
-                    .groupBoxStyle(PlainGroupBoxStyle())
+
+                    Section(header: ListHeader(text: "Rooms")) {
+                        if let rooms = gitter.rooms {
+                            ForEach(rooms, id: \.id) { room in
+                                RowItem(text: room.name)
+                            }
+                        }
+                    }
+                    
+                    Section(header: ListHeader(text: "Communities")) {
+                        if let groups = gitter.groups {
+                            ForEach(groups, id: \.id) { group in
+                                RowItem(text: group.name)
+                            }
+                        }
+                    }
                 }
+                .listStyle(InsetGroupedListStyle())
             }
             .navigationBarTitle("Home")
             .navigationBarItems(
                 leading:
                     NavigationLink(destination: ProfileView()) {
-                        if let user = gitter.user {
-                            ImageView(url: user.avatarUrlSmall!)
-                                .clipShape(Circle())
-                                .frame(width: 30, height: 30)
-                        } else {
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                        Group {
+                            if let user = gitter.user {
+                                ImageView(url: user.avatarUrlSmall!)
+                            }
                         }
+                        .clipShape(Circle())
+                        .frame(width: 30, height: 30)
                     }
             )
             .toolbar {
@@ -67,10 +75,41 @@ struct HomeView: View {
             }
         }
     }
+    
+    func favouriteRooms(rooms: [GRoom]) -> [GRoom] {
+        var favRooms = [GRoom]()
+        rooms.forEach { room in
+            if room.favourite != nil {
+                favRooms.append(room)
+            }
+        }
+        return favRooms.sorted {
+            if let oldFav = $0.favourite, let newFav = $1.favourite {
+                return oldFav > newFav
+            }
+            return false
+        }
+    }
+    
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+struct ListHeader: View {
+    var text: String = ""
+    var body: some View {
+        Text(text)
+            .foregroundColor(Color(UIColor.label))
+            .textCase(.none)
+            .font(.system(size: 20, weight: .semibold, design: .default))
+    }
+}
+
+struct RowItem: View {
+    var text: String = "Test link"
+    var body: some View {
+        NavigationLink(destination: Text(text)) {
+            HStack {
+                Text(text)
+            }
+        }
     }
 }

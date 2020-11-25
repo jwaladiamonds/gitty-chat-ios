@@ -10,79 +10,42 @@ import SwiftUI
 let defaults = UserDefaults.standard
 
 class Gitter: ObservableObject {
-    @Published var client = Client()
-    @Published var user: User?
-    @Published var credential: Credential?
+    
+    var client = GClient()
+    
+    @Published var user: GUser?
+    @Published var rooms: [GRoom]?
+    @Published var groups: [GGroup]?
+    @Published var credential: GCredential?
     @Published var loggedIn = false
-    
-    var authURL:String {
-        return "https://gitter.im/login/oauth/authorize?client_id=\(self.client.id!)&response_type=code&redirect_uri=\(self.client.redirectURI!)"
-    }
-    
-    func openAuthURL() {
-        if let url = URL(string: self.authURL) {
-            UIApplication.shared.open(url)
-        }
-    }
-    
-    func auth(code: String?) {
-        if let code = code {
-            let requestBody: [String: String] = [
-                "client_id": self.client.id!,
-                "client_secret": self.client.secret!,
-                "code": code,
-                "redirect_uri": self.client.redirectURI!,
-                "grant_type": "authorization_code"
-            ]
-            guard let encoded = try? JSONEncoder().encode(requestBody) else {
-                print("Failed to encode order")
-                return
-            }
-            let url = URL(string: "https://gitter.im/login/oauth/token")!
-            var request = URLRequest(url: url)
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST"
-            request.httpBody = encoded
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                guard let data = data else {
-                    print("No data in response: \(error?.localizedDescription ?? "Unknown error").")
-                    return
-                }
-                if let decodedResponse = try? JSONDecoder().decode(Credential.self, from: data) {
-                    DispatchQueue.main.async {
-                        self.login(credential: decodedResponse)
-                    }
-                    return
-                }
-                print("Unable to decode response")
-            }.resume()
-        }
-    }
-    
-    func login(credential: Credential) {
-        self.loggedIn = true
-        self.credential = credential
-        self.save()
+   
+    func loadInitialData() {
         self.getUser()
+        self.getRooms()
+        self.getGroups()
     }
     
-    func logout() {
-        self.loggedIn = false
-        self.credential = nil
-        defaults.removeObject(forKey: "GitterCredential")
-    }
-    
-    func save() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(self.credential) {
-            defaults.set(encoded, forKey: "GitterCredential")
-            return
+    func getUser() {
+        fetch(url: "https://api.gitter.im/v1/user/me") { data in
+            self.user = data
         }
     }
+    
+    func getRooms() {
+        fetch(url: "https://api.gitter.im/v1/rooms") { data in
+            self.rooms = data
+        }
+    }
+    
+    func getGroups() {
+        fetch(url: "https://api.gitter.im/v1/groups") { data in
+            self.groups = data
+        }
+    }
+}
+
+
+extension Gitter {
     
     func fetch<Content: Codable>(url: String,_ completion: @escaping (Content) -> Void) {
         if let credential = self.credential {
@@ -104,23 +67,25 @@ class Gitter: ObservableObject {
                 }
                 
                 if let mimeType = httpResponse.mimeType, mimeType == "application/json",
-                   let data = data { //}, let string = String(data: data, encoding: .utf8) {
-                    if let decodedResponse = try? JSONDecoder().decode(Content.self, from: data) {
+//                   let data = data {
+                   let data = data, let string = String(data: data, encoding: .utf8) {
+                    print(string)
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS'Z'"
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(formatter)
+                    do {
+                        let decodedResponse = try decoder.decode(Content.self, from: data)
                         DispatchQueue.main.async {
                             completion(decodedResponse)
                         }
                         return
+                    } catch {
+                        print(error.localizedDescription)
                     }
                 }
             }.resume()
         }
     }
     
-    func getUser() {
-        fetch(url: "https://api.gitter.im/v1/user/me") { data in
-            self.user = data
-        }
-    }
 }
-
-
