@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WelcomeView: View {
-    var gitter: Gitter
+    @EnvironmentObject var gitter: Gitter
     var body: some View {
         VStack(alignment: .leading) {
             Text("Where comminities thrive")
@@ -36,6 +36,6 @@ struct WelcomeView: View {
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView(gitter: Gitter())
+        WelcomeView()
     }
 }

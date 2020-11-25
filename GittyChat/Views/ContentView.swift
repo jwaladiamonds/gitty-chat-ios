@@ -14,7 +14,7 @@ struct ContentView: View {
         ZStack {
             MainView()
             if !gitter.loggedIn {
-                WelcomeView(gitter: gitter)
+                WelcomeView()
                     .offset(x: gitter.credential == nil ? 0 : -UIScreen.main.bounds.width)
                     .transition(.move(edge: .leading))
                     .animation(.easeInOut(duration: 0.2))
