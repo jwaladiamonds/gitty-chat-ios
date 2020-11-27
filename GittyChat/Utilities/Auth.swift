@@ -10,7 +10,7 @@ import SwiftUI
 extension Gitter {
     
     private var redirect: String {
-        return "gitter:" + self.client.host
+        return "gitter://" + self.client.host
     }
     
     private var authURL:String {
