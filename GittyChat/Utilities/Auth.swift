@@ -9,8 +9,12 @@ import SwiftUI
 
 extension Gitter {
     
-    var authURL:String {
-        return "https://gitter.im/login/oauth/authorize?client_id=\(self.client.id!)&response_type=code&redirect_uri=\(self.client.redirectURI!)"
+    private var redirect: String {
+        return "gitter:" + self.client.host
+    }
+    
+    private var authURL:String {
+        return "https://gitter.im/login/oauth/authorize?client_id=\(self.client.key)&response_type=code&redirect_uri=\(self.redirect)"
     }
     
     func openAuthURL() {
@@ -22,10 +26,10 @@ extension Gitter {
     func auth(code: String?) {
         if let code = code {
             let requestBody: [String: String] = [
-                "client_id": self.client.id!,
-                "client_secret": self.client.secret!,
+                "client_id": self.client.key,
+                "client_secret": self.client.secret,
                 "code": code,
-                "redirect_uri": self.client.redirectURI!,
+                "redirect_uri": self.redirect,
                 "grant_type": "authorization_code"
             ]
             guard let encoded = try? JSONEncoder().encode(requestBody) else {
@@ -70,7 +74,7 @@ extension Gitter {
         defaults.removeObject(forKey: "GitterCredential")
     }
     
-    func save() {
+    private func save() {
         if let encoded = try? JSONEncoder().encode(self.credential) {
             defaults.set(encoded, forKey: "GitterCredential")
             return

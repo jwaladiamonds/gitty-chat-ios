@@ -31,29 +31,6 @@ struct GCredential: Codable {
     }
 }
 
-struct GClient {
-    var id: String?
-    var secret: String?
-    var redirectURI: String?
-    var host = "redirect"
-    
-    init() {
-        if let data = self.getData() {
-            self.id = data["OAuthClientId"] as? String
-            self.secret = data["OAuthClientSecret"] as? String
-            self.redirectURI = data["OAuthCallback"] as? String
-        }
-    }
-    
-    private func getData() -> [String: Any]? {
-        if let path = Bundle.main.path(forResource: "Gitter", ofType: "plist"),
-           let xml = FileManager.default.contents(atPath: path) {
-            return (try? PropertyListSerialization.propertyList(from: xml, options: .mutableContainersAndLeaves, format: nil)) as? [String: Any]
-        }
-        return nil
-    }
-}
-
 struct GBacking: Codable {
     enum ChannelType: String, Codable {
         case oneToOne = "ONE_TO_ONE"

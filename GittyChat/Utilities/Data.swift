@@ -11,14 +11,14 @@ let defaults = UserDefaults.standard
 
 class Gitter: ObservableObject {
     
-    var client = GClient()
+    let client = OAuth()
     
     @Published var user: GUser?
     @Published var rooms: [GRoom]?
     @Published var groups: [GGroup]?
     @Published var credential: GCredential?
     @Published var loggedIn = false
-   
+    
     func loadInitialData() {
         self.getUser()
         self.getRooms()

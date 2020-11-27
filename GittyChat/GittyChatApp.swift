@@ -29,7 +29,7 @@ struct GittyChatApp: App {
         }
     }
     
-    func loadSavedData() {
+    private func loadSavedData() {
         if let savedCredential = UserDefaults.standard.object(forKey: "GitterCredential") as? Data {
             let decoder = JSONDecoder()
             if let credential = try? decoder.decode(GCredential.self, from: savedCredential) {
