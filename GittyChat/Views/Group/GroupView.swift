@@ -43,4 +43,3 @@ struct GroupItem: View {
     }
 }
 
-

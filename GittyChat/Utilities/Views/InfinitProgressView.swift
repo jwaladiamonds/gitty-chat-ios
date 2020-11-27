@@ -30,9 +30,3 @@ struct InfinitProgressView: View {
         }
     }
 }
-
-struct InfinitProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfinitProgressView()
-    }
-}
