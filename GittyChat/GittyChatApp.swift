@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct GittyChatApp: App {
-    var gitter = Gitter()
+    @StateObject var gitter = Gitter()
     var body: some Scene {
         WindowGroup {
             ContentView()
