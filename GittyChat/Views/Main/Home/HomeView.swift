@@ -14,13 +14,6 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 List {
-//
-//                    Section(header: ListHeader(text: "Favorites", waitFor: gitter.rooms)) {
-//                        ForEach(favouriteRooms(rooms: gitter.rooms), id: \.id) { room in
-//                            RoomItem(room: room)
-//                        }
-//                    }
-                    
                     Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
                         ForEach(sortedRooms(rooms: gitter.rooms), id: \.id) { room in
                             RoomItem(room: room)
@@ -79,23 +72,6 @@ struct HomeView: View {
             }
         }
     }
-    
-//    func favouriteRooms(rooms: [GRoom]?) -> [GRoom] {
-//        var favRooms = [GRoom]()
-//        if let rooms = rooms {
-//            rooms.forEach { room in
-//                if room.favourite != nil {
-//                    favRooms.append(room)
-//                }
-//            }
-//        }
-//        return favRooms.sorted {
-//            if let nextFav = $0.favourite, let thisFav = $1.favourite {
-//                return nextFav < thisFav
-//            }
-//            return false
-//        }
-//    }
     
     func sortedRooms(rooms: [GRoom]?) -> [GRoom] {
         var favRooms = [GRoom]()
