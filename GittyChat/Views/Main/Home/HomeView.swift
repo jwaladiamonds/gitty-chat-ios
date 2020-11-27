@@ -14,34 +14,24 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 List {
+//
+//                    Section(header: ListHeader(text: "Favorites", waitFor: gitter.rooms)) {
+//                        ForEach(favouriteRooms(rooms: gitter.rooms), id: \.id) { room in
+//                            RoomItem(room: room)
+//                        }
+//                    }
                     
-                    Section(header: ListHeader(text: "Favorites")) {
-                        if let rooms = gitter.rooms {
-                            ForEach(favouriteRooms(rooms: rooms), id: \.id) { room in
-                                RoomItem(room: room)
-                            }
-                        } else {
-                            InfinitProgressView()
-                        }
-                    }
-
-                    Section(header: ListHeader(text: "Rooms")) {
-                        if let rooms = gitter.rooms {
-                            ForEach(sortedRooms(rooms: rooms), id: \.id) { room in
-                                RoomItem(room: room)
-                            }
-                        } else {
-                            InfinitProgressView()
+                    Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
+                        ForEach(sortedRooms(rooms: gitter.rooms), id: \.id) { room in
+                            RoomItem(room: room)
                         }
                     }
                     
-                    Section(header: ListHeader(text: "Communities")) {
+                    Section(header: ListHeader(text: "Communities", waitFor: gitter.groups)) {
                         if let groups = gitter.groups {
                             ForEach(groups, id: \.id) { group in
                                 GroupItem(group: group)
                             }
-                        } else {
-                            InfinitProgressView()
                         }
                     }
                 }
@@ -68,9 +58,15 @@ struct HomeView: View {
                         Button(action: {}) {
                             Label("Create community", systemImage: "person.2.square.stack")
                         }
-
+                        
                         Button(action: {}) {
                             Label("Create room", systemImage: "person.crop.square")
+                        }
+                        
+                        Button(action: {
+                            gitter.logout()
+                        }) {
+                            Label("Logout", systemImage: "multiply.circle")
                         }
                     }
                     label: {
@@ -84,11 +80,33 @@ struct HomeView: View {
         }
     }
     
-    func favouriteRooms(rooms: [GRoom]) -> [GRoom] {
+//    func favouriteRooms(rooms: [GRoom]?) -> [GRoom] {
+//        var favRooms = [GRoom]()
+//        if let rooms = rooms {
+//            rooms.forEach { room in
+//                if room.favourite != nil {
+//                    favRooms.append(room)
+//                }
+//            }
+//        }
+//        return favRooms.sorted {
+//            if let nextFav = $0.favourite, let thisFav = $1.favourite {
+//                return nextFav < thisFav
+//            }
+//            return false
+//        }
+//    }
+    
+    func sortedRooms(rooms: [GRoom]?) -> [GRoom] {
         var favRooms = [GRoom]()
-        rooms.forEach { room in
-            if room.favourite != nil {
-                favRooms.append(room)
+        var unfavRooms = [GRoom]()
+        if let rooms = rooms {
+            rooms.forEach { room in
+                if room.favourite != nil {
+                    favRooms.append(room)
+                } else {
+                    unfavRooms.append(room)
+                }
             }
         }
         return favRooms.sorted {
@@ -96,13 +114,9 @@ struct HomeView: View {
                 return nextFav < thisFav
             }
             return false
-        }
-    }
-    
-    func sortedRooms(rooms: [GRoom]) -> [GRoom] {
-        return rooms.sorted {
-            if let nextFav = $0.lastAccessTime, let thisFav = $1.lastAccessTime {
-                return nextFav > thisFav
+        } + unfavRooms.sorted {
+            if let nextAccess = $0.lastAccessTime, let thisAccess = $1.lastAccessTime {
+                return nextAccess > thisAccess
             }
             return false
         }

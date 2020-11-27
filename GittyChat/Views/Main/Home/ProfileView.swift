@@ -43,7 +43,7 @@ struct ProfileView: View {
                 }
                 .padding()
             }
-            Section(header: ListHeader(text: "Providers")) {
+            Section(header: ListHeader(text: "Providers", waitFor: user.providers)) {
                 if let providers = user.providers {
                     ForEach(providers, id: \.self) { provider in
                         Link("\(provider)".capitalized, destination: URL(string: "https://\(provider).com\(user.url)")!)
