@@ -29,6 +29,7 @@
 		679928BE256BA99C00F25A83 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679928BD256BA99C00F25A83 /* ImageView.swift */; };
 		67D073EE2569259C0046C820 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D073ED2569259C0046C820 /* Models.swift */; };
 		67D073F22569267D0046C820 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D073F12569267D0046C820 /* Launch Screen.storyboard */; };
+		67FB643F2570EA0D00DBE49F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FB643E2570EA0D00DBE49F /* TabBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		679928BD256BA99C00F25A83 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		67D073ED2569259C0046C820 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		67D073F12569267D0046C820 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		67FB643E2570EA0D00DBE49F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 			children = (
 				679928BD256BA99C00F25A83 /* ImageView.swift */,
 				6709F73F256E652E008AFB20 /* InfinitProgressView.swift */,
+				67FB643E2570EA0D00DBE49F /* TabBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				670A320D2567A73700BA0015 /* WelcomeView.swift in Sources */,
 				670A323625691D5C00BA0015 /* CommunitiesView.swift in Sources */,
 				679928BE256BA99C00F25A83 /* ImageView.swift in Sources */,
+				67FB643F2570EA0D00DBE49F /* TabBarView.swift in Sources */,
 				670A31F92567A2FC00BA0015 /* GittyChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
