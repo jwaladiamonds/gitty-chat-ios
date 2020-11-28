@@ -18,6 +18,7 @@ class Gitter: ObservableObject {
     @Published var groups: [GGroup]?
     @Published var credential: GCredential?
     @Published var loggedIn = false
+    @Published var selectedRoom: GRoom?
     
     func loadInitialData() {
         self.getUser()
@@ -52,7 +53,7 @@ extension Gitter {
             let url = URL(string: url)!
             var request = URLRequest(url: url)
             request.setValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue(credential.authorization, forHTTPHeaderField: "Authorization")
+            request.setValue(credential.token_type + " " + credential.access_token, forHTTPHeaderField: "Authorization")
             request.httpMethod = "GET"
             
             URLSession.shared.dataTask(with: request) { data, response, error in

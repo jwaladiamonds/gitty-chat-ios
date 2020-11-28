@@ -32,6 +32,10 @@ struct ImageView: View {
     @StateObject private var loader: Loader
     @State private var image: Image = Image(systemName: "person.crop.circle.fill")
 
+    init(url: String) {
+        _loader = StateObject(wrappedValue: Loader(url: url))
+    }
+    
     var body: some View {
         if let image = UIImage(data: loader.data) {
             Image(uiImage: image)
@@ -39,9 +43,5 @@ struct ImageView: View {
         } else {
             ProgressView()
         }
-    }
-
-    init(url: String) {
-        _loader = StateObject(wrappedValue: Loader(url: url))
     }
 }

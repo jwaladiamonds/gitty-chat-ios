@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var selectedTab = 0
+    @State var selectedTab = 0
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView()
@@ -33,6 +33,7 @@ struct MainView: View {
                 }.tag(3)
         }
         .font(.headline)
+        .overlay(ChatView())
     }
 }
 

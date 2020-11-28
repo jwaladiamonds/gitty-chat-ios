@@ -10,13 +10,15 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var gitter: Gitter
+    @State private var tabBar: UITabBar! = nil
+    @State private var view: UIView! = nil
     var body: some View {
         NavigationView {
             VStack {
                 List {
                     Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
                         ForEach(sortedRooms(rooms: gitter.rooms), id: \.id) { room in
-                            RoomItem(room: room)
+                            RoomItem(room: room, tabBar: $tabBar)
                         }
                     }
                     
@@ -70,6 +72,10 @@ struct HomeView: View {
                     }
                 }
             }
+            .background(TabBarAccessor { tabbar in
+                self.tabBar = tabbar
+                self.view = tabbar.superview
+            })
         }
     }
     
