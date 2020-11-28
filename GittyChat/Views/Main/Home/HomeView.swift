@@ -53,13 +53,13 @@ struct HomeView: View {
                         Button(action: {}) {
                             Label("Create community", systemImage: "person.2.square.stack")
                         }
-                        
+
                         Button(action: {}) {
                             Label("Create room", systemImage: "person.crop.square")
                         }
-                        
+
                         Button(action: {
-                            gitter.logout()
+                            gitter.auth.logout()
                         }) {
                             Label("Logout", systemImage: "multiply.circle")
                         }

@@ -57,7 +57,7 @@ struct ProfileView: View {
         .toolbar {
             ToolbarItem(placement: .destructiveAction) {
                 Button("Logout") {
-                    gitter.logout()
+                    gitter.auth.logout()
                 }
             }
         }

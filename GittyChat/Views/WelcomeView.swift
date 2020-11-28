@@ -24,7 +24,7 @@ struct WelcomeView: View {
                     .padding(.bottom, 35)
                     .padding([.leading, .trailing], 80)
                 PrimaryButton(title: "Sign in with Gitter") {
-                    gitter.openAuthURL()
+                    gitter.auth.openAuthURL()
                 }
             }
             Spacer()

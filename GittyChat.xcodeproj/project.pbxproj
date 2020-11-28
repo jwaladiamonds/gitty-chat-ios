@@ -37,6 +37,7 @@
 		67D991EF25721994000F5297 /* GroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991EE25721994000F5297 /* GroupBox.swift */; };
 		67D991F325721A14000F5297 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991F225721A14000F5297 /* List.swift */; };
 		67D991F625721A34000F5297 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991F525721A34000F5297 /* TabView.swift */; };
+		67D991FC25721F52000F5297 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991FB25721F52000F5297 /* Client.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		67D991EE25721994000F5297 /* GroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupBox.swift; sourceTree = "<group>"; };
 		67D991F225721A14000F5297 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		67D991F525721A34000F5297 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		67D991FB25721F52000F5297 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 			children = (
 				6734084B256E296000306DF1 /* Auth.swift */,
 				670A32192567CC6300BA0015 /* Gitter.swift */,
+				67D991FB25721F52000F5297 /* Client.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				67BDFF3F257214FA00237494 /* GRoom.swift in Sources */,
 				67D991E3257218E2000F5297 /* PrimaryButton.swift in Sources */,
 				679928BE256BA99C00F25A83 /* ImageView.swift in Sources */,
+				67D991FC25721F52000F5297 /* Client.swift in Sources */,
 				670A31F92567A2FC00BA0015 /* GittyChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
