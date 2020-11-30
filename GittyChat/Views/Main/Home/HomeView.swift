@@ -59,7 +59,7 @@ struct HomeView: View {
                         }
 
                         Button(action: {
-                            gitter.auth.logout()
+                            gitter.logout()
                         }) {
                             Label("Logout", systemImage: "multiply.circle")
                         }

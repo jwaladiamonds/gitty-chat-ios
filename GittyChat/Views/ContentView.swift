@@ -13,13 +13,13 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             MainView()
-            if !gitter.auth.loggedIn {
+            if !gitter.loggedIn {
                 WelcomeView()
-                    .offset(x: gitter.auth.credential == nil ? 0 : -UIScreen.main.bounds.width)
+                    .offset(x: gitter.credential == nil ? 0 : -UIScreen.main.bounds.width)
                     .transition(.move(edge: .leading))
                     .animation(.easeInOut(duration: 0.2))
             }
-        }.onAppear{ print(gitter.auth.loggedIn) }
+        }.onAppear{ print(gitter.loggedIn) }
         .accentColor(.ruby)
     }
 }

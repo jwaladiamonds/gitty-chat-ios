@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-class OAuth: ObservableObject {
+class OAuth {
     
-    @Published var client: Client
-    @Published var credential: GCredential?
-    @Published var loggedIn = false
+    var client: Client
     
     init(client: Client) {
         self.client = client
@@ -27,36 +25,23 @@ class OAuth: ObservableObject {
         }
     }
     
-    func authorize(code: String?) {
+    func authorize(code: String?,_ completion: @escaping (GCredential) -> Void) {
         client.fetchCredential(code: code, debug: true) { credential in
-            self.login(credential: credential)
+            completion(credential)
         }
     }
     
-    func login(credential: GCredential) {
-        print("Logging in...")
-        self.loggedIn = true
-        self.credential = credential
-        self.save()
-    }
-    
-    func logout() {
-        self.loggedIn = false
-        self.credential = nil
-        defaults.removeObject(forKey: "GitterCredential")
-    }
-    
-    func load() {
+    func load(_ completion: @escaping (GCredential) -> Void) {
         if let savedCredential = UserDefaults.standard.object(forKey: "GitterCredential") as? Data {
             let decoder = JSONDecoder()
             if let credential = try? decoder.decode(GCredential.self, from: savedCredential) {
-                self.login(credential: credential)
+                completion(credential)
             }
         }
     }
     
-    private func save() {
-        if let encoded = try? JSONEncoder().encode(self.credential) {
+    func save(credential: GCredential) {
+        if let encoded = try? JSONEncoder().encode(credential) {
             defaults.set(encoded, forKey: "GitterCredential")
             return
         }

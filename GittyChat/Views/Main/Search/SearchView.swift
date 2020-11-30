@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct SearchView: View {
+    @State var searchText: String = ""
+    @State var isSearching: Bool = false
+    @State var showResults: Bool = false
     var body: some View {
-        NavigationView {
-            Text("Search")
-                .navigationBarTitle("Search")
+        ScrollView {
+            VStack {
+                SearchBar(searchText: $searchText, isSearching: $isSearching, showResults: $showResults)
+                Text("Search")
+                    .navigationBarTitle("Search")
+            }
         }
     }
 }

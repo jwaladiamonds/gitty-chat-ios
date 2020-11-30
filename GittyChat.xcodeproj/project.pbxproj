@@ -38,6 +38,7 @@
 		67D991F325721A14000F5297 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991F225721A14000F5297 /* List.swift */; };
 		67D991F625721A34000F5297 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991F525721A34000F5297 /* TabView.swift */; };
 		67D991FC25721F52000F5297 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D991FB25721F52000F5297 /* Client.swift */; };
+		67D992012574BBEA000F5297 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D992002574BBEA000F5297 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		67D991F225721A14000F5297 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		67D991F525721A34000F5297 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		67D991FB25721F52000F5297 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		67D992002574BBEA000F5297 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				670A322F25691D3700BA0015 /* SearchView.swift */,
+				67D992002574BBEA000F5297 /* SearchBar.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				67BDFF372571241600237494 /* ChatView.swift in Sources */,
 				6709F740256E652E008AFB20 /* InfinitProgressView.swift in Sources */,
 				67D991F325721A14000F5297 /* List.swift in Sources */,
+				67D992012574BBEA000F5297 /* SearchBar.swift in Sources */,
 				67D991F625721A34000F5297 /* TabView.swift in Sources */,
 				67BDFF422572152C00237494 /* GGroup.swift in Sources */,
 				67BDFF4B2572158400237494 /* GUser.swift in Sources */,

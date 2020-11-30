@@ -11,10 +11,6 @@ import SwiftUI
 struct GittyChatApp: App {
     @StateObject var gitter = Gitter()
     
-//    init() {
-//        
-//    }
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -22,10 +18,16 @@ struct GittyChatApp: App {
                 .onOpenURL { url in
                     if let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
                        let params = components.queryItems {
-                        gitter.auth.authorize(code: params.first(where: { $0.name == "code" })?.value)
+                        gitter.auth.authorize(code: params.first(where: { $0.name == "code" })?.value) { credential in
+                            gitter.login(credential: credential)
+                        }
                     }
                 }
-                .onAppear(perform: gitter.auth.load)
+                .onAppear {
+                    gitter.auth.load { credential in
+                        gitter.credential = credential
+                    }
+                }
         }
     }
 }
