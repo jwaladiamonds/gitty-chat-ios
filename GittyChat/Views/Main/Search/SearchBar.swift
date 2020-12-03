@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var searchText: String
     @Binding var isSearching: Bool
-    @Binding var showResults: Bool
+//    @Binding var showResults: Bool
 //    @Binding var loadSearch: Bool
     var body: some View {
         HStack(spacing: 0) {
@@ -25,7 +25,7 @@ struct SearchBar: View {
             .padding(.horizontal)
             .onTapGesture {
                 isSearching = true
-                showResults = true
+//                showResults = true
             }
             .overlay(
                 HStack {
@@ -50,7 +50,7 @@ struct SearchBar: View {
                 Button(action: {
                     isSearching = false
                     searchText = ""
-                    showResults = false
+//                    showResults = false
                     
                     UIApplication.shared
                         .sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -68,6 +68,6 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(searchText: .constant(""), isSearching: .constant(true), showResults: .constant(true))
+        SearchBar(searchText: .constant(""), isSearching: .constant(true))
     }
 }

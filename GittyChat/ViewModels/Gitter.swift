@@ -14,9 +14,9 @@ class Gitter: ObservableObject {
     let client = Client()
     var auth: OAuth
     
-    @Published var credential: GCredential?
-    @Published var loggedIn = false
+    @AppStorage("loggedIn") var loggedIn = false
     
+    @Published var credential: GCredential?
     @Published var user: GUser?
     @Published var rooms: [GRoom]?
     @Published var groups: [GGroup]?
@@ -24,6 +24,11 @@ class Gitter: ObservableObject {
     
     init() {
         self.auth = OAuth(client: client)
+        if loggedIn {
+            self.auth.load { credential in
+                self.login(credential: credential)
+            }
+        }
     }
     
     func loadInitialData() {
@@ -33,7 +38,7 @@ class Gitter: ObservableObject {
     }
     
     func getUser() {
-        client.fetchJSON(url: "https://api.gitter.im/v1/user/me", credential: credential) { data in
+        auth.client.fetchJSON(url: "https://api.gitter.im/v1/user/me", credential: credential) { data in
             self.user = data
         }
     }
@@ -54,6 +59,7 @@ class Gitter: ObservableObject {
         self.loggedIn = true
         self.credential = credential
         self.auth.save(credential: credential)
+        self.loadInitialData()
     }
     
     func logout() {

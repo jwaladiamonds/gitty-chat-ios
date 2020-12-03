@@ -26,7 +26,6 @@ struct WelcomeView: View {
                 PrimaryButton(title: "Sign in with Gitter") {
                     gitter.auth.openAuthURL()
                 }
-                Text("\(gitter.credential?.access_token ?? "No token")")
             }
             Spacer()
         }

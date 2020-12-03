@@ -15,12 +15,12 @@ class OAuth {
         self.client = client
     }
     
-    private var authURL:String {
-        return "https://gitter.im/login/oauth/authorize?client_id=\(self.client.key)&response_type=code&redirect_uri=\(self.client.redirect)"
-    }
-    
     func openAuthURL() {
-        if let url = URL(string: self.authURL) {
+        let authURL = "https://gitter.im/login/oauth/authorize"
+        let parameters = "?client_id=\(self.client.key)" +
+            "&response_type=code&" +
+            "redirect_uri=\(self.client.redirect)"
+        if let url = URL(string: authURL + parameters) {
             UIApplication.shared.open(url)
         }
     }

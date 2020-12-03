@@ -10,73 +10,71 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var gitter: Gitter
-    @State private var tabBar: UITabBar! = nil
-    @State private var view: UIView! = nil
+    @State private var searchText: String = ""
+    @State private var isSearching: Bool = false
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
-                        ForEach(sortedRooms(rooms: gitter.rooms), id: \.id) { room in
-                            RoomItem(room: room, tabBar: $tabBar)
+        VStack {
+            List {
+                Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
+                    ForEach(sortedRooms(rooms: gitter.rooms), id: \.id) { room in
+                        RoomItem(room: room)
+                    }
+                }
+                
+                Section(header: ListHeader(text: "Communities", waitFor: gitter.groups)) {
+                    if let groups = gitter.groups {
+                        ForEach(groups, id: \.id) { group in
+                            GroupItem(group: group)
                         }
+                    }
+                }
+            }
+            .listStyle(InsetGroupedListStyle())
+        }
+        .navigationBarTitle("Home")
+        .navigationBarItems(
+            leading:
+                Group {
+                    NavigationLink(destination: ProfileView()) {
+                        Group {
+                            if let user = gitter.user {
+                                ImageView(url: user.avatarUrlSmall!)
+                            } else {
+                                Color.red
+                            }
+                        }
+                        .clipShape(Circle())
+                        .frame(width: 30, height: 30)
+                    }
+                }
+        )
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Menu {
+                    Button(action: {}) {
+                        Label("Create community", systemImage: "person.2.square.stack")
                     }
                     
-                    Section(header: ListHeader(text: "Communities", waitFor: gitter.groups)) {
-                        if let groups = gitter.groups {
-                            ForEach(groups, id: \.id) { group in
-                                GroupItem(group: group)
-                            }
-                        }
+                    Button(action: {}) {
+                        Label("Create room", systemImage: "person.crop.square")
+                    }
+                    
+                    Button(action: {
+                        gitter.logout()
+                    }) {
+                        Label("Logout", systemImage: "multiply.circle")
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
-            }
-            .navigationBarTitle("Home")
-            .navigationBarItems(
-                leading:
-                    Group {
-                        if let user = gitter.user {
-                            NavigationLink(destination: ProfileView(user: user)) {
-                                Group {
-                                    ImageView(url: user.avatarUrlSmall!)
-                                }
-                                .clipShape(Circle())
-                                .frame(width: 30, height: 30)
-                            }
-                        }
-                    }
-            )
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    Menu {
-                        Button(action: {}) {
-                            Label("Create community", systemImage: "person.2.square.stack")
-                        }
-
-                        Button(action: {}) {
-                            Label("Create room", systemImage: "person.crop.square")
-                        }
-
-                        Button(action: {
-                            gitter.logout()
-                        }) {
-                            Label("Logout", systemImage: "multiply.circle")
-                        }
-                    }
-                    label: {
-                        Image(systemName: "plus.app")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .padding(.vertical)
-                    }
+                label: {
+                    Image(systemName: "plus.app")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .padding(.vertical)
                 }
             }
-            .background(TabBarAccessor { tabbar in
-                self.tabBar = tabbar
-                self.view = tabbar.superview
-            })
         }
+        //        .background(
+        //            SearchBar(searchText: $searchText, isSearching: $isSearching))
     }
     
     func sortedRooms(rooms: [GRoom]?) -> [GRoom] {

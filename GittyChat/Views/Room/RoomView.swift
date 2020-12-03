@@ -28,22 +28,22 @@ struct RoomView: View {
 
 struct RoomItem: View {
     var room: GRoom
-    @Binding var tabBar: UITabBar!
+//    @Binding var tabBar: UITabBar!
     var body: some View {
         NavigationLink(destination:
             RoomView(room: room)
-                .onAppear {
-                    withAnimation(.spring()){
+//                .onAppear {
+//                    withAnimation(.spring()){
 //                        self.tabBar.isHidden = true
-                        self.setTabBarVisible(hide: true, tabBar: self.tabBar)
-                    }
-                }
-                .onDisappear {
-                    withAnimation(.spring()){
+//                        self.setTabBarVisible(hide: true, tabBar: self.tabBar)
+//                    }
+//                }
+//                .onDisappear {
+//                    withAnimation(.spring()){
 //                        self.tabBar.isHidden = false
-                        self.setTabBarVisible(hide: false, tabBar: self.tabBar)
-                    }
-                }
+//                        self.setTabBarVisible(hide: false, tabBar: self.tabBar)
+//                    }
+//                }
             ) {
             HStack {
                 Group {
@@ -90,23 +90,23 @@ struct RoomItem: View {
         }
     }
     
-    func setTabBarVisible(hide: Bool, tabBar: UITabBar?) {
-
-        // get a frame calculation ready
-        let frame = tabBar?.frame
-        let height = frame?.size.height
-        let offsetY = (hide ? height: -height!)
-
-        // zero duration means no animation
-        let duration: TimeInterval = 0.3
-
-        //  animate the tabBar
-        if frame != nil {
-            UIView.animate(withDuration: duration) {
-                tabBar?.frame = frame!.offsetBy(dx: 0, dy: offsetY!)
-                return
-            }
-        }
-    }
+//    func setTabBarVisible(hide: Bool, tabBar: UITabBar?) {
+//
+//        // get a frame calculation ready
+//        let frame = tabBar?.frame
+//        let height = frame?.size.height
+//        let offsetY = (hide ? height: -height!)
+//
+//        // zero duration means no animation
+//        let duration: TimeInterval = 0.3
+//
+//        //  animate the tabBar
+//        if frame != nil {
+//            UIView.animate(withDuration: duration) {
+//                tabBar?.frame = frame!.offsetBy(dx: 0, dy: offsetY!)
+//                return
+//            }
+//        }
+//    }
 }
 

@@ -7,33 +7,35 @@
 
 import SwiftUI
 
+enum Tab: String {
+    case home = "Home"
+    case chat = "Chat"
+}
+
 struct MainView: View {
     @State var selectedTab = 0
+    @State var selectedInnerTab: Tab = .home
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }.tag(0)
-            SearchView()
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }.tag(1)
-            PeopleView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("People")
-                }.tag(2)
-            CommunitiesView()
-                .tabItem {
-                    Image(systemName: "person.3.fill")
-                    Text("Communities")
-                }.tag(3)
+            ProfileView().tag(1)
+            NavigationView {
+                TabView(selection: $selectedInnerTab) {
+                    HomeView()
+                        .tabItem {
+                            Image(systemName: "house.fill")
+                            Text(Tab.home.rawValue)
+                        }.tag(Tab.home)
+                    ChatView()
+                        .tabItem {
+                            Image(systemName: "bubble.left.and.bubble.right.fill")
+                            Text(Tab.chat.rawValue)
+                        }.tag(Tab.chat)
+                }
+                .font(.headline)
+//                .navigationBarTitle(selectedInnerTab.rawValue)
+            }.tag(0)
         }
-        .font(.headline)
-        .overlay(ChatView())
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 
