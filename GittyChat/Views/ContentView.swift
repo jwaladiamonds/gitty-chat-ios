@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import SafariServices
 
 struct ContentView: View {
     @EnvironmentObject var gitter: Gitter
@@ -19,5 +19,18 @@ struct ContentView: View {
                 .animation(.easeInOut(duration: 0.2))
         }
         .accentColor(.ruby)
+    }
+}
+
+struct SafariView: UIViewControllerRepresentable {
+    var url: URL
+        
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
+        let safariView = SFSafariViewController(url: url)
+        return safariView
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
+
     }
 }

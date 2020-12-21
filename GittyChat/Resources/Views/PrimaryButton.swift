@@ -22,3 +22,25 @@ struct PrimaryButton: View {
         })
     }
 }
+
+struct LoginButton: View {
+    let title: String
+    let url: URL?
+    @Binding var success: Bool
+    var body: some View {
+        Button(action: {
+            success = true
+        }, label: {
+            Text(title.uppercased())
+                .fontWeight(.bold)
+                .foregroundColor(Color.accentColor)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color(UIColor.systemBackground))
+                .cornerRadius(5)
+                .fullScreenCover(isPresented: $success) {
+                    SafariView(url: url!).edgesIgnoringSafeArea(.all)
+                }
+        })
+    }
+}

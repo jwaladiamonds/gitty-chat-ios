@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     @EnvironmentObject var gitter: Gitter
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Where comminities thrive")
@@ -23,9 +24,7 @@ struct WelcomeView: View {
                     .cornerRadius(40)
                     .padding(.bottom, 35)
                     .padding([.leading, .trailing], 80)
-                PrimaryButton(title: "Sign in with Gitter") {
-                    gitter.auth.openAuthURL()
-                }
+                LoginButton(title: "Sign in with Gitter", url: gitter.auth.getAuthURL(), success: gitter.$loggedIn)
             }
             Spacer()
         }
