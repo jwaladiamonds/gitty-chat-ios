@@ -15,6 +15,7 @@ class Gitter: ObservableObject {
     var auth: OAuth
     
     @AppStorage("loggedIn") var loggedIn = false
+    @Published var showLoginView = false
     
     @Published var credential: GCredential?
     @Published var user: GUser?

@@ -26,10 +26,10 @@ struct PrimaryButton: View {
 struct LoginButton: View {
     let title: String
     let url: URL?
-    @Binding var success: Bool
+    @Binding var show: Bool
     var body: some View {
         Button(action: {
-            success = true
+            show = true
         }, label: {
             Text(title.uppercased())
                 .fontWeight(.bold)
@@ -38,7 +38,7 @@ struct LoginButton: View {
                 .frame(maxWidth: .infinity)
                 .background(Color(UIColor.systemBackground))
                 .cornerRadius(5)
-                .fullScreenCover(isPresented: $success) {
+                .fullScreenCover(isPresented: $show) {
                     SafariView(url: url!).edgesIgnoringSafeArea(.all)
                 }
         })

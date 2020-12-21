@@ -32,10 +32,9 @@ struct MainView: View {
                         }.tag(Tab.chat)
                 }
                 .font(.headline)
-//                .navigationBarTitle(selectedInnerTab.rawValue)
+                .navigationBarTitle(selectedInnerTab.rawValue)
             }.tag(0)
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
     }
 }
 
