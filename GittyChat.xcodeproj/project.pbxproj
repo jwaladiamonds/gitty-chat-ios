@@ -18,6 +18,7 @@
 		670A322925691C7B00BA0015 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A322825691C7B00BA0015 /* MainView.swift */; };
 		670A322D25691D2700BA0015 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A322C25691D2700BA0015 /* HomeView.swift */; };
 		670A323025691D3700BA0015 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A322F25691D3700BA0015 /* SearchView.swift */; };
+		67153010259089E9008E9285 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6715300F259089E9008E9285 /* SafariView.swift */; };
 		6734084C256E296000306DF1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734084B256E296000306DF1 /* Auth.swift */; };
 		67340851256E427200306DF1 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67340850256E427200306DF1 /* RoomView.swift */; };
 		67340856256E456A00306DF1 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67340855256E456A00306DF1 /* GroupView.swift */; };
@@ -56,6 +57,7 @@
 		670A322825691C7B00BA0015 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		670A322C25691D2700BA0015 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		670A322F25691D3700BA0015 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		6715300F259089E9008E9285 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		6734084B256E296000306DF1 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		67340850256E427200306DF1 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		67340855256E456A00306DF1 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				67D991E2257218E2000F5297 /* PrimaryButton.swift */,
 				67D991F225721A14000F5297 /* List.swift */,
 				67D991F525721A34000F5297 /* TabView.swift */,
+				6715300F259089E9008E9285 /* SafariView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				6709F740256E652E008AFB20 /* InfinitProgressView.swift in Sources */,
 				67D991F325721A14000F5297 /* List.swift in Sources */,
 				67D9920425761598000F5297 /* TabbarView.swift in Sources */,
+				67153010259089E9008E9285 /* SafariView.swift in Sources */,
 				67D992012574BBEA000F5297 /* SearchBar.swift in Sources */,
 				67D991F625721A34000F5297 /* TabView.swift in Sources */,
 				67BDFF422572152C00237494 /* GGroup.swift in Sources */,
