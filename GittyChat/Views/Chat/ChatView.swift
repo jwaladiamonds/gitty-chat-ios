@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct ChatView: View {
+    var room: GRoom
+    @State private var text = ""
+    @EnvironmentObject var gitter: Gitter
     var body: some View {
-        Text("Hello World!")
+        VStack(spacing: 0) {
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading) {
+                    ForEach(0 ..< 60) { item in
+                        Text("Hello \(item+1)")
+                    }
+                }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            ChatField(text: $text) {
+                print("Sending following text:")
+                print(self.text)
+            }
+            .background(Color(.systemBackground).edgesIgnoringSafeArea(.bottom))
+            .overlay(Divider(), alignment: .top)
+        }
+        .background(Color(.systemGroupedBackground))
+        .navigationBarTitle(room.name, displayMode: .inline)
+        .onTapGesture {
+            UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
+        }
     }
 }
 
@@ -97,7 +122,7 @@ struct ChatField: View {
                     .scaledToFit()
                     .padding(12)
                     .frame(height: 38, alignment: .center)
-//                    .foregroundColor(C)
+                //                    .foregroundColor(C)
             })
             .background(Color(.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 10))

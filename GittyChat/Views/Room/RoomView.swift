@@ -11,7 +11,7 @@ struct RoomView: View {
     var room: GRoom
     @EnvironmentObject var gitter: Gitter
     var body: some View {
-        EmptyView()
+        ChatView(room: room)
             .onAppear{
                 gitter.selectedRoom = room
             }
