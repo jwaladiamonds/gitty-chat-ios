@@ -40,7 +40,6 @@
 		67D992012574BBEA000F5297 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D992002574BBEA000F5297 /* SearchBar.swift */; };
 		67D9920425761598000F5297 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D9920325761598000F5297 /* TabbarView.swift */; };
 		67D99208257626F2000F5297 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D99207257626F2000F5297 /* UI.swift */; };
-		67D9920D2576366F000F5297 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D9920C2576366F000F5297 /* ChatRoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,7 +78,6 @@
 		67D992002574BBEA000F5297 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		67D9920325761598000F5297 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		67D99207257626F2000F5297 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
-		67D9920C2576366F000F5297 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +204,6 @@
 			isa = PBXGroup;
 			children = (
 				67BDFF362571241600237494 /* ChatView.swift */,
-				67D9920C2576366F000F5297 /* ChatRoomView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -346,7 +343,6 @@
 				670A31FB2567A2FC00BA0015 /* ContentView.swift in Sources */,
 				670A322D25691D2700BA0015 /* HomeView.swift in Sources */,
 				67BDFF482572156500237494 /* GCredential.swift in Sources */,
-				67D9920D2576366F000F5297 /* ChatRoomView.swift in Sources */,
 				67D991E825721937000F5297 /* Color.swift in Sources */,
 				67D991EC2572196D000F5297 /* Text.swift in Sources */,
 				679928B1256B88AB00F25A83 /* ProfileView.swift in Sources */,

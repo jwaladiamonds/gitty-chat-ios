@@ -15,36 +15,13 @@ struct RoomView: View {
             .onAppear{
                 gitter.selectedRoom = room
             }
-//        VStack {
-//            if let url = room.avatarUrl {
-//                ImageView(url: url)
-//                    .clipShape(Circle())
-//                    .frame(width: 100, height: 100)
-//            }
-//            Text(room.name)
-//        }
     }
 }
 
 struct RoomItem: View {
     var room: GRoom
-//    @Binding var tabBar: UITabBar!
     var body: some View {
-        NavigationLink(destination:
-            RoomView(room: room)
-//                .onAppear {
-//                    withAnimation(.spring()){
-//                        self.tabBar.isHidden = true
-//                        self.setTabBarVisible(hide: true, tabBar: self.tabBar)
-//                    }
-//                }
-//                .onDisappear {
-//                    withAnimation(.spring()){
-//                        self.tabBar.isHidden = false
-//                        self.setTabBarVisible(hide: false, tabBar: self.tabBar)
-//                    }
-//                }
-            ) {
+        NavigationLink(destination: RoomView(room: room)) {
             HStack {
                 Group {
                     if let url = room.avatarUrl {
@@ -89,24 +66,4 @@ struct RoomItem: View {
             }
         }
     }
-    
-//    func setTabBarVisible(hide: Bool, tabBar: UITabBar?) {
-//
-//        // get a frame calculation ready
-//        let frame = tabBar?.frame
-//        let height = frame?.size.height
-//        let offsetY = (hide ? height: -height!)
-//
-//        // zero duration means no animation
-//        let duration: TimeInterval = 0.3
-//
-//        //  animate the tabBar
-//        if frame != nil {
-//            UIView.animate(withDuration: duration) {
-//                tabBar?.frame = frame!.offsetBy(dx: 0, dy: offsetY!)
-//                return
-//            }
-//        }
-//    }
 }
-

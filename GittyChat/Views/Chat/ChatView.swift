@@ -14,13 +14,15 @@ struct ChatView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    ForEach(0 ..< 60) { item in
-                        Text("Hello \(item+1)")
+                LazyVStack {
+                    VStack(alignment: .leading) {
+                        ForEach(0 ..< 60) { item in
+                            Text("Hello \(item+1)")
+                        }
                     }
+                    .padding(.horizontal)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .padding(.horizontal)
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
             
             ChatField(text: $text) {
@@ -38,11 +40,12 @@ struct ChatView: View {
     }
 }
 
+
 struct MessageField: UIViewRepresentable {
     
     @Binding var text: String
     @Binding var height: CGFloat
-    var placeholder = "Message"
+    let placeholder = "Message"
     
     func makeCoordinator() -> Coordiator {
         return MessageField.Coordiator(parent: self, placeholder: placeholder)
@@ -60,10 +63,10 @@ struct MessageField: UIViewRepresentable {
         return view
     }
     
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        uiView.text = self.text
+    func updateUIView(_ textView: UITextView, context: Context) {
+        if self.text != "" { textView.text = self.text }
         DispatchQueue.main.async {
-            self.height = uiView.contentSize.height
+            self.height = textView.contentSize.height
         }
     }
     
@@ -122,7 +125,6 @@ struct ChatField: View {
                     .scaledToFit()
                     .padding(12)
                     .frame(height: 38, alignment: .center)
-                //                    .foregroundColor(C)
             })
             .background(Color(.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -132,23 +134,13 @@ struct ChatField: View {
     }
 }
 
-struct ChatRoom: View {
-    
+struct TestRoom: View {
+
     @State var text = ""
     @State var height: CGFloat = 0
-    
+
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("Chat Room")
-                    .font(.title)
-                    .fontWeight(.bold)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color(.systemBackground))
-            
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     ForEach(0 ..< 60) { item in
@@ -158,22 +150,17 @@ struct ChatRoom: View {
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
-            
+
             ChatField(text: $text, height: height) {
                 print("Sending following text:")
                 print(self.text)
             }
-            .background(Color(.systemBackground).edgesIgnoringSafeArea(.bottom))
-        }
-        .background(Color(.systemGroupedBackground))
-        .onTapGesture {
-            UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
         }
     }
 }
 
 struct MessageField_Previews: PreviewProvider {
     static var previews: some View {
-        ChatRoom(height: 38)
+        TestRoom(height: 38)
     }
 }
