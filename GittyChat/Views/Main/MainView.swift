@@ -13,23 +13,15 @@ enum Tab: String {
 }
 
 struct MainView: View {
-    @State var selectedInnerTab: Tab = .home
+    @State var selection: Tab = .home
     var body: some View {
         NavigationView {
-            TabView(selection: $selectedInnerTab) {
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house.fill")
-                        Text(Tab.home.rawValue)
-                    }.tag(Tab.home)
-                ProfileView()
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text(Tab.profile.rawValue)
-                    }.tag(Tab.profile)
+            TabView(selection: $selection) {
+                ProfileView().tag(Tab.profile)
+                HomeView().tag(Tab.home)
             }
-            .font(.headline)
-            .navigationBarTitle(selectedInnerTab.rawValue)
+//            .navigationTitle(selection.rawValue)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
     }
 }

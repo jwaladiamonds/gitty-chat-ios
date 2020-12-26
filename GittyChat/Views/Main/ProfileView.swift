@@ -11,63 +11,61 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject var gitter: Gitter
     var body: some View {
-        List {
-            if let user = gitter.user {
-                Section {
-                    VStack(alignment: .leading) {
-                        HStack(spacing: 20) {
-                            Group {
-                                if let url = user.avatarUrl {
-                                    ImageView(url: url)
-                                } else if let url = user.avatarUrlMedium {
-                                    ImageView(url: url)
-                                } else if let url = user.avatarUrlSmall {
-                                    ImageView(url: url)
-                                } else {
-                                    Image(systemName: "person.fill")
+            List {
+                if let user = gitter.user {
+                    Section {
+                        VStack(alignment: .leading) {
+                            HStack(spacing: 20) {
+                                Group {
+                                    if let url = user.avatarUrl {
+                                        ImageView(url: url)
+                                    } else if let url = user.avatarUrlMedium {
+                                        ImageView(url: url)
+                                    } else if let url = user.avatarUrlSmall {
+                                        ImageView(url: url)
+                                    } else {
+                                        Image(systemName: "person.fill")
+                                    }
+                                }
+                                .clipShape(Circle())
+                                .frame(width: 80, height: 80)
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text(user.displayName)
+                                        .font(.title)
+                                    Text("@\(user.username)")
+                                        .foregroundColor(.ruby)
+                                        .onTapGesture(perform: {
+                                            shareURL(url: "https://gitter.im\(user.url)")
+                                        })
                                 }
                             }
-                            .clipShape(Circle())
-                            .frame(width: 80, height: 80)
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(user.displayName)
-                                    .font(.title)
-                                Text("@\(user.username)")
-                                    .foregroundColor(.ruby)
-                                    .onTapGesture(perform: {
-                                        shareURL(url: "https://gitter.im\(user.url)")
-                                    })
+                            Spacer()
+                        }
+                        .padding()
+                    }
+                    Section(header: ListHeader(text: "Providers", waitFor: user.providers)) {
+                        if let providers = user.providers {
+                            ForEach(providers, id: \.self) { provider in
+                                Link("\(provider)".capitalized, destination: URL(string: "https://\(provider).com\(user.url)")!)
                             }
                         }
-                        Spacer()
-                    }
-                    .padding()
-                }
-                Section(header: ListHeader(text: "Providers", waitFor: user.providers)) {
-                    if let providers = user.providers {
-                        ForEach(providers, id: \.self) { provider in
-                            Link("\(provider)".capitalized, destination: URL(string: "https://\(provider).com\(user.url)")!)
-                        }
                     }
                 }
             }
-        }
-        .listStyle(InsetGroupedListStyle())
-        .frame(maxWidth: .infinity, alignment: .topLeading)
-        .navigationBarTitle("Profile", displayMode: .inline)
-        .toolbar {
-            ToolbarItem(placement: .destructiveAction) {
-                Button("Logout") {
-                    gitter.logout()
-                }
-            }
-        }
-        .background(Group {
-            if gitter.user == nil {
-                ProgressView()
-            }
-        })
-        .ignoresSafeArea(.all, edges: .all)
+            .listStyle(InsetGroupedListStyle())
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .ignoresSafeArea(.all, edges: .all)
+            
+//            HStack {
+//                Text("Profile")
+//                    .font(.largeTitle)
+//                Spacer()
+//                Button("Logout") {
+//                    gitter.logout()
+//                }
+//            }
+        .navigationTitle(Text("Profile"))
+        .navigationBarTitleDisplayMode(.large)
     }
     
     func shareURL(url: String) {

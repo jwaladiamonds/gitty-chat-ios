@@ -181,18 +181,10 @@
 			children = (
 				670A322825691C7B00BA0015 /* MainView.swift */,
 				679928B0256B88AB00F25A83 /* ProfileView.swift */,
-				679928B3256B9C9D00F25A83 /* Home */,
+				670A322C25691D2700BA0015 /* HomeView.swift */,
 				679928B4256B9CAB00F25A83 /* Search */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		679928B3256B9C9D00F25A83 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				670A322C25691D2700BA0015 /* HomeView.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		679928B4256B9CAB00F25A83 /* Search */ = {
