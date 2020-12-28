@@ -14,24 +14,53 @@ struct HomeView: View {
     @State private var isSearching: Bool = false
     
     var body: some View {
-        List {
-            Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
-                ForEach(sortedRooms(rooms: gitter.rooms), id: \.id) { room in
-                    RoomItem(room: room)
+        NavigationView {
+            List {
+                Section(header: VStack(alignment: .leading) {
+                    SearchBar(searchText: $searchText, isSearching: $isSearching)
+                    ListHeader(text: "Rooms", waitFor: gitter.rooms)
+                })
+                {
+                    ForEach(sortedRooms(rooms: gitter.rooms).filter({ room in
+                        room.name.lowercased().contains(searchText.lowercased()) || searchText.isEmpty
+                    }), id: \.id) { room in
+                        RoomItem(room: room)
+                    }
+                }
+                
+                Section(header: ListHeader(text: "Communities", waitFor: gitter.groups)) {
+                    if let groups = gitter.groups {
+                        ForEach(groups.filter({ group in
+                            group.name.lowercased().contains(searchText.lowercased()) || searchText.isEmpty
+                        }), id: \.id) { group in
+                            GroupItem(group: group)
+                        }
+                    }
                 }
             }
-            
-            Section(header: ListHeader(text: "Communities", waitFor: gitter.groups)) {
-                if let groups = gitter.groups {
-                    ForEach(groups, id: \.id) { group in
-                        GroupItem(group: group)
+            .listStyle(InsetGroupedListStyle())
+            .navigationTitle(Text("Home"))
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Button(action: {}) {
+                            Label("Create community", systemImage: "person.2.square.stack")
+                        }
+                        
+                        Button(action: {}) {
+                            Label("Create room", systemImage: "person.crop.square")
+                        }
+                    }
+                    label: {
+                        Image(systemName: "plus.app")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                            .padding(.vertical)
                     }
                 }
             }
         }
-        .listStyle(InsetGroupedListStyle())
-        .navigationTitle(Text("Home"))
-        .navigationBarTitleDisplayMode(.large)
     }
     
     func sortedRooms(rooms: [GRoom]?) -> [GRoom] {
