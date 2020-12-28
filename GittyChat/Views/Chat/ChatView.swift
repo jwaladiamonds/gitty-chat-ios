@@ -8,34 +8,21 @@
 import SwiftUI
 
 struct ChatView: View {
+    @State var message = ""
+    @State var messages = [GMessage]()
     var room: GRoom
-    @State private var text = ""
-    @EnvironmentObject var gitter: Gitter
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack {
-                    VStack(alignment: .leading) {
-                        ForEach(0 ..< 60) { item in
-                            Text("Hello \(item+1)")
-                        }
-                    }
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
+        VStack {
+            MessageScroll(messages: messages) { message in
+                ChatBubble(message: message)
             }
+            MessageField(text: $message) {
+                //  Sent message here
+            }
+            .background(Color(.systemBackground).edgesIgnoringSafeArea(.bottom))
+            .overlay(Divider(), alignment: .top)
         }
         .background(Color(.systemGroupedBackground))
         .navigationBarTitle(room.name, displayMode: .inline)
-        .onTapGesture {
-            UIApplication.shared.windows.first?.rootViewController?.view.endEditing(true)
-        }
-    }
-}
-
-    var body: some View {
-            }
-            }
-        }
     }
 }
