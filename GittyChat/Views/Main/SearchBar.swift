@@ -10,56 +10,45 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var searchText: String
     @Binding var isSearching: Bool
-//    @Binding var showResults: Bool
-//    @Binding var loadSearch: Bool
     var body: some View {
         HStack(spacing: 0) {
-            HStack {
-                TextField("Search", text: $searchText)
-                    .padding(.leading, 24)
-            }
-            .frame(height: 4.0)
-            .padding()
+            TextField("Search", text: $searchText)
+            .padding(.horizontal, 30)
+            .padding(.vertical, 10)
             .background(Color(.systemGray5))
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-            .padding(.horizontal)
+            .foregroundColor(Color(.label))
+            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
             .onTapGesture {
                 isSearching = true
-//                showResults = true
             }
             .overlay(
                 HStack {
                     Image(systemName: "magnifyingglass")
+                        .padding(10)
                     Spacer()
                     Button(action: {
-                      searchText = ""
+                        searchText = ""
                     }) {
-                        Image(systemName: "xmark.circle")
-                            .foregroundColor(.gray)
+                        Image(systemName: "xmark.circle.fill")
                             .opacity(isSearching ? 1 : 0)
-                        
+                            .padding(10)
                     }
                 }
-                .padding(.horizontal, 28.0)
-                .foregroundColor(.gray)
+                .foregroundColor(Color(.systemGray))
             )
             .animation(.spring())
-//            .animation(loadSearch ? .spring() : .none )
-            
             if isSearching {
                 Button(action: {
                     isSearching = false
                     searchText = ""
-//                    showResults = false
-                    
                     UIApplication.shared
                         .sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
                     Text("Cancel")
-                        .padding(.trailing)
-                        .padding(.leading, 0)
+                        .padding(.leading, 10)
+                        .foregroundColor(Color.accentColor)
                 }
-                .transition(.move(edge: .trailing))
+                .transition(AnyTransition.opacity.combined(with: .move(edge: .trailing)))
                 .animation(.spring())
             }
         }
