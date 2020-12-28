@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct GUser: Codable {
+protocol UserModelProtocol: Identifiable {
+    var id: String { get }
+    var username: String { get }
+}
+
+struct GUser: Codable, UserModelProtocol {
     var id: String
     var username: String
     var displayName: String
