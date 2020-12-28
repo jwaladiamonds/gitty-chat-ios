@@ -10,7 +10,9 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var gitter: Gitter
+    @State private var showSettings = false
     var body: some View {
+        NavigationView {
             List {
                 if let user = gitter.user {
                     Section {
@@ -51,11 +53,27 @@ struct ProfileView: View {
                         }
                     }
                 }
+                
+                Button(action: {
+                    gitter.logout()
+                }) {
+                    Text("Logout")
+                }
             }
             .listStyle(InsetGroupedListStyle())
             .frame(maxWidth: .infinity, alignment: .topLeading)
             .ignoresSafeArea(.all, edges: .all)
-        .navigationTitle(Text("Profile"))
+            .navigationTitle(Text("Profile"))
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: { showSettings = true }){
+                        Image(systemName: "gear")
+                    }
+                }
+            }.sheet(isPresented: $showSettings) {
+                SettingsView()
+            }
+        }
     }
     
     func shareURL(url: String) {
