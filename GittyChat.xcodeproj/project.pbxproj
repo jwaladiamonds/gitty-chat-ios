@@ -23,6 +23,8 @@
 		671C7C0C2599BB13001E6397 /* MessageScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671C7C0B2599BB13001E6397 /* MessageScroll.swift */; };
 		671C7C0F2599BD98001E6397 /* GMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671C7C0E2599BD98001E6397 /* GMessage.swift */; };
 		671C7C122599CEDC001E6397 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671C7C112599CEDC001E6397 /* ChatBubble.swift */; };
+		671C7C1B2599F3D9001E6397 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671C7C1A2599F3D9001E6397 /* GroupItem.swift */; };
+		671C7C1E2599F3FD001E6397 /* RoomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671C7C1D2599F3FD001E6397 /* RoomItem.swift */; };
 		6734084C256E296000306DF1 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734084B256E296000306DF1 /* Auth.swift */; };
 		67340851256E427200306DF1 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67340850256E427200306DF1 /* RoomView.swift */; };
 		67340856256E456A00306DF1 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67340855256E456A00306DF1 /* GroupView.swift */; };
@@ -64,6 +66,8 @@
 		671C7C0B2599BB13001E6397 /* MessageScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageScroll.swift; sourceTree = "<group>"; };
 		671C7C0E2599BD98001E6397 /* GMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMessage.swift; sourceTree = "<group>"; };
 		671C7C112599CEDC001E6397 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
+		671C7C1A2599F3D9001E6397 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
+		671C7C1D2599F3FD001E6397 /* RoomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomItem.swift; sourceTree = "<group>"; };
 		6734084B256E296000306DF1 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		67340850256E427200306DF1 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		67340855256E456A00306DF1 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				67340850256E427200306DF1 /* RoomView.swift */,
+				671C7C1D2599F3FD001E6397 /* RoomItem.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				67340855256E456A00306DF1 /* GroupView.swift */,
+				671C7C1A2599F3D9001E6397 /* GroupItem.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				6734084C256E296000306DF1 /* Auth.swift in Sources */,
 				670A322925691C7B00BA0015 /* MainView.swift in Sources */,
 				6709F7432570C537008AFB20 /* Secret.swift in Sources */,
+				671C7C1B2599F3D9001E6397 /* GroupItem.swift in Sources */,
 				670A321A2567CC6300BA0015 /* Gitter.swift in Sources */,
 				67BDFF372571241600237494 /* ChatView.swift in Sources */,
 				6709F740256E652E008AFB20 /* InfinitProgressView.swift in Sources */,
@@ -361,6 +368,7 @@
 				67D99208257626F2000F5297 /* UI.swift in Sources */,
 				67BDFF3F257214FA00237494 /* GRoom.swift in Sources */,
 				67D991E3257218E2000F5297 /* PrimaryButton.swift in Sources */,
+				671C7C1E2599F3FD001E6397 /* RoomItem.swift in Sources */,
 				679928BE256BA99C00F25A83 /* ImageView.swift in Sources */,
 				67D991FC25721F52000F5297 /* Client.swift in Sources */,
 				670A31F92567A2FC00BA0015 /* GittyChatApp.swift in Sources */,
