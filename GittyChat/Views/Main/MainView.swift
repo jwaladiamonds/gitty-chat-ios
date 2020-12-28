@@ -7,20 +7,55 @@
 
 import SwiftUI
 
-enum Tab: String {
-    case home = "Home"
-    case profile = "Profile"
-}
-
 struct MainView: View {
-    @State var selection: Tab = .home
+    private var screenWidth = UIScreen.main.bounds.width
+    @State private var translationWidth: CGFloat = 0
+    @State private var offsetProfile: CGFloat = -UIScreen.main.bounds.width
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
-                ProfileView().tag(Tab.profile)
-                HomeView().tag(Tab.home)
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        ZStack {
+            HomeView()
+                .gesture(
+                    DragGesture()
+                        .onChanged {
+                            self.translationWidth = $0.translation.width
+                            if self.translationWidth > 0 {
+                                self.offsetProfile = -screenWidth + $0.translation.width
+                            }
+                        }
+                        .onEnded { _ in
+                            if self.translationWidth > screenWidth/4 {
+                                withAnimation(.easeOut(duration: 0.3)) {
+                                    self.offsetProfile = 0
+                                }
+                            } else {
+                                withAnimation(.easeOut(duration: 0.4)) {
+                                    self.offsetProfile = -screenWidth
+                                }
+                            }
+                        }
+                )
+            ProfileView()
+                .offset(x: offsetProfile)
+                .gesture(
+                    DragGesture()
+                        .onChanged {
+                            self.translationWidth = $0.translation.width
+                            if self.translationWidth < 0 {
+                                self.offsetProfile = $0.translation.width
+                            }
+                        }
+                        .onEnded { _ in
+                            if self.translationWidth < -screenWidth/4 {
+                                withAnimation(.easeOut(duration: 0.3)) {
+                                    self.offsetProfile = -screenWidth
+                                }
+                            } else {
+                                withAnimation(.easeOut(duration: 0.4)) {
+                                    self.offsetProfile = 0
+                                }
+                            }
+                        }
+                )
         }
     }
 }
