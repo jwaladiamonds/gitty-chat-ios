@@ -12,6 +12,7 @@ struct HomeView: View {
     @EnvironmentObject var gitter: Gitter
     @State private var searchText: String = ""
     @State private var isSearching: Bool = false
+    
     var body: some View {
         List {
             Section(header: ListHeader(text: "Rooms", waitFor: gitter.rooms)) {
@@ -31,34 +32,6 @@ struct HomeView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(Text("Home"))
         .navigationBarTitleDisplayMode(.large)
-//        .navigationTitle(Text("Home"))
-//        .toolbar {
-//            ToolbarItem(placement: .primaryAction) {
-//                Menu {
-//                    Button(action: {}) {
-//                        Label("Create community", systemImage: "person.2.square.stack")
-//                    }
-//
-//                    Button(action: {}) {
-//                        Label("Create room", systemImage: "person.crop.square")
-//                    }
-//
-//                    Button(action: {
-//                        gitter.logout()
-//                    }) {
-//                        Label("Logout", systemImage: "multiply.circle")
-//                    }
-//                }
-//                label: {
-//                    Image(systemName: "plus.app")
-//                        .resizable()
-//                        .frame(width: 20, height: 20)
-//                        .padding(.vertical)
-//                }
-//            }
-//        }
-        //        .background(
-        //            SearchBar(searchText: $searchText, isSearching: $isSearching))
     }
     
     func sortedRooms(rooms: [GRoom]?) -> [GRoom] {

@@ -55,17 +55,7 @@ struct ProfileView: View {
             .listStyle(InsetGroupedListStyle())
             .frame(maxWidth: .infinity, alignment: .topLeading)
             .ignoresSafeArea(.all, edges: .all)
-            
-//            HStack {
-//                Text("Profile")
-//                    .font(.largeTitle)
-//                Spacer()
-//                Button("Logout") {
-//                    gitter.logout()
-//                }
-//            }
         .navigationTitle(Text("Profile"))
-        .navigationBarTitleDisplayMode(.large)
     }
     
     func shareURL(url: String) {

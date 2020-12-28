@@ -20,12 +20,10 @@ struct MainView: View {
                 ProfileView().tag(Tab.profile)
                 HomeView().tag(Tab.home)
             }
-//            .navigationTitle(selection.rawValue)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
     }
 }
-
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
