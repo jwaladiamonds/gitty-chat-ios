@@ -283,6 +283,8 @@
 			dependencies = (
 			);
 			name = GittyChat;
+			packageProductDependencies = (
+			);
 			productName = GittyChat;
 			productReference = 670A31F52567A2FC00BA0015 /* GittyChat.app */;
 			productType = "com.apple.product-type.application";
@@ -310,6 +312,8 @@
 				Base,
 			);
 			mainGroup = 670A31EC2567A2FC00BA0015;
+			packageReferences = (
+			);
 			productRefGroup = 670A31F62567A2FC00BA0015 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
