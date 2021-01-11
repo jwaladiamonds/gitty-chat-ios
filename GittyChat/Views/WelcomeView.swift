@@ -23,7 +23,9 @@ struct WelcomeView: View {
                     .cornerRadius(40)
                     .padding(.bottom, 35)
                     .padding([.leading, .trailing], 80)
-                LoginButton(title: "Sign in with Gitter", url: gitter.auth.getAuthURL(), show: $gitter.showLoginView)
+                PrimaryButton(title: "Sign in with Gitter") {
+                    gitter.login()
+                }
             }
             Spacer()
         }
