@@ -17,7 +17,7 @@
  - [x] fetch Rooms
  - [x] fetch Groups
  - [ ] Search function
- - [ ] Chat function
+ - [x] Chat function
  - [ ] Push Notification
  - [ ] Message analyser
  - [ ] Custom Keyboard
