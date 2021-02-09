@@ -7,7 +7,7 @@
  - [ ] Search page
  - [ ] People page
  - [ ] Communities page
- - [ ] Chat page
+ - [x] Chat page
  - [ ] Settings page
 
 ## Core
